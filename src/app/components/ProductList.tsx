@@ -1,135 +1,128 @@
+import { ProductsType } from "@/types";
+import ProductCard from "./ProductCard"
+import Categories from "./Categories";
 // TEMPORARY DATA
-
-const product = [
+const products : ProductsType = [
   {
     id: 1,
-    name: "product Adidas T-Shirt",
-    short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    colors: ["gray", "products/1.jpg", "products/2.jpg"],
-    sizes: ["S", "M", "L", "XL"],
-    price: 99.99,
-    images: [
-      "products/1.jpg",
-      "products/2.jpg",
-      "products/3.jpg",
-      "products/4.jpg",
-      "products/5.jpg",
-    ],
-    attributes: [
-      { name: "color", value: "gray" },
-      { name: "size", value: "M" },
-      { name: "material", value: "Cotton" },
-    ],
+    name: "Adidas CoreFit T-Shirt",
+    shortDescription:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    description:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    price: 39.9,
+    sizes: ["s", "m", "l", "xl", "xxl"],
+    colors: ["gray", "purple", "green"],
+    images: {
+      gray: "/products/1g.png",
+      purple: "/products/1p.png",
+      green: "/products/1gr.png",
+    },
   },
   {
     id: 2,
-    name: "Puma Ultra Zoom Waffle",
-    short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    colors: ["green", "black", "products/6.jpg", "products/7.jpg"],
-    sizes: ["38", "39", "40", "41", "42"],
-    price: 120.00,
-    images: [
-      "products/6.jpg",
-      "products/7.jpg",
-      "products/8.jpg",
-    ],
-    attributes: [
-      { name: "color", value: "black" },
-      { name: "size", value: "41" },
-      { name: "material", value: "Synthetic" },
-    ],
+    name: "Puma Ultra Warm Zip",
+    shortDescription:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    description:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    price: 59.9,
+    sizes: ["s", "m", "l", "xl"],
+    colors: ["gray", "green"],
+    images: { gray: "/products/2g.png", green: "/products/2gr.png" },
   },
   {
     id: 3,
-    name: "Nike Air Max 270",
-    short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    colors: ["blue", "white", "products/9.jpg", "products/10.jpg"],
-    sizes: ["38", "39", "40", "41", "42"],
-    price: 150.00,
-    images: [
-      "products/9.jpg",
-      "products/10.jpg",
-      "products/11.jpg",
-    ],
-    attributes: [
-      { name: "color", value: "white" },
-      { name: "size", value: "40" },
-      { name: "material", value: "Mesh" },
-    ],
+    name: "Nike Air Essentials Pullover",
+    shortDescription:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    description:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    price: 69.9,
+    sizes: ["s", "m", "l"],
+    colors: ["green", "blue", "black"],
+    images: {
+      green: "/products/3gr.png",
+      blue: "/products/3b.png",
+      black: "/products/3bl.png",
+    },
   },
   {
     id: 4,
-    name: "Calvin Klein Sweater",
-    short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    colors: ["brown", "products/12.jpg"],
-    sizes: ["S", "M", "L", "XL"],
-    price: 75.00,
-    images: [
-      "products/12.jpg",
-      "products/13.jpg",
-    ],
-    attributes: [
-      { name: "color", value: "brown" },
-      { name: "size", value: "L" },
-      { name: "material", value: "Wool" },
-    ],
+    name: "Nike Dri Flex T-Shirt",
+    shortDescription:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    description:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    price: 29.9,
+    sizes: ["s", "m", "l"],
+    colors: ["white", "pink"],
+    images: { white: "/products/4w.png", pink: "/products/4p.png" },
   },
   {
     id: 5,
-    name: "Levis Jeans",
-    short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    colors: ["dark-blue", "products/14.jpg"],
-    sizes: ["28", "30", "32", "34", "36"],
-    price: 60.00,
-    images: [
-      "products/14.jpg",
-      "products/15.jpg",
-    ],
-    attributes: [
-      { name: "color", value: "dark-blue" },
-      { name: "size", value: "32" },
-      { name: "material", value: "Denim" },
-    ],
+    name: "Under Armour StormFleece",
+    shortDescription:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    description:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    price: 49.9,
+    sizes: ["s", "m", "l"],
+    colors: ["red", "orange", "black"],
+    images: {
+      red: "/products/5r.png",
+      orange: "/products/5o.png",
+      black: "/products/5bl.png",
+    },
   },
   {
     id: 6,
-    name: "New Balance 990v5",
-    short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    colors: ["grey", "products/16.jpg"],
-    sizes: ["38", "39", "40", "41", "42"],
-    price: 175.00,
-    images: [
-      "products/16.jpg",
-      "products/17.jpg",
-    ],
-    attributes: [
-      { name: "color", value: "grey" },
-      { name: "size", value: "42" },
-      { name: "material", value: "Suede" },
-    ],
+    name: "Nike Air Max 270",
+    shortDescription:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    description:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    price: 59.9,
+    sizes: ["40", "42", "43", "44"],
+    colors: ["gray", "white"],
+    images: { gray: "/products/6g.png", white: "/products/6w.png" },
   },
   {
     id: 7,
-    name: "Ralph Lauren Polo",
-    short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    colors: ["red", "products/18.jpg"],
-    sizes: ["S", "M", "L", "XL"],
-    price: 55.00,
-    images: [
-      "products/18.jpg",
-      "products/19.jpg",
-    ],
-    attributes: [
-      { name: "color", value: "red" },
-      { name: "size", value: "S" },
-      { name: "material", value: "Pique" },
-    ],
+    name: "Nike Ultraboost Pulse ",
+    shortDescription:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    description:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    price: 69.9,
+    sizes: ["40", "42", "43"],
+    colors: ["gray", "pink"],
+    images: { gray: "/products/7g.png", pink: "/products/7p.png" },
+  },
+  {
+    id: 8,
+    name: "Levi’s Classic Denim",
+    shortDescription:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    description:
+      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    price: 59.9,
+    sizes: ["s", "m", "l"],
+    colors: ["blue", "green"],
+    images: { blue: "/products/8b.png", green: "/products/8gr.png" },
   },
 ];
+
+const ProductList = () => {
+  return (
+    <div className="w-full">
+      <Categories />
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
+        {products.map(product=>(
+          <ProductCard/>
+        ))}
+      </div>
+    </div>
+  );
+};
+export default ProductList;

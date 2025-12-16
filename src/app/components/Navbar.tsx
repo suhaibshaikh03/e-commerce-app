@@ -11,14 +11,14 @@ const Navbar = () => {
         
             {/* LEFT */}
             <Link href="/" className="flex items-center">
-            <Image 
+            <Image
             src="/logo.png"
-            alt="SUHAIB'S ECOMMERCE"
+            alt="SUHAIB&apos;S ECOMMERCE"
             width={36}
-            height={36} 
+            height={36}
             className="w-6 h-6 md:w-9 md:h-9"
             />
-            <p className="hidden md:block text-md font-medium tracking-wider text-yellow-400">SUHAIB'S MART</p>
+            <p className="hidden md:block text-md font-medium tracking-wider text-yellow-400">SUHAIB&apos;S MART</p>
             </Link>
             {/* RIGHT */}
             <div className="flex items-center gap-6">

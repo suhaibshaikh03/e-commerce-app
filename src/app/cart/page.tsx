@@ -1,5 +1,6 @@
 "use client"
 import { CartItemsType } from "@/types"
+import { ArrowRight } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation"
 
 const steps = [
@@ -94,9 +95,33 @@ const CartPage = () => {
                     <div className={`w-6 h-6 rounded-full text-white p-4 flex items-center justify-center ${step.id===activeStep ? "bg-gray-800":"bg-gray-200"}`}>
                         {step.id}
                     </div>
-                    <p>{step.title}</p>
+                    <p className={`text-sm font medium ${step.id===activeStep ? "text-gray-800":"text-gray-400"}`}>{step.title}</p>
                 </div>
             ))}
+        </div>
+        {/* STEPS & DETAILS */}
+        <div className="w-full flex flex-col lg:flex-row gap-16">
+        {/* STEPS */}
+        <div className="w-full lg:w-7/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8">
+
+        </div>
+        {/* DETAILS */}
+        <div className="w-full lg:w-5/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8">
+            <h2 className="font-semibold">Cart Details</h2>
+            <div className="flex flex-col gap-4">
+                <div className="flex justify-between">
+                    <p>Subtotal</p>
+                    <p>${cartItems.reduce(
+                        (acc, item) => acc + item.price * item.quantity,
+                        0
+                    )}</p>
+                </div>
+            </div>
+            <button className="w-full bg-gray-800 hover:bg-gray-900 transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2">
+                Continue
+                <ArrowRight className="w-3 h-3"/>
+                </button>
+        </div>
         </div>
         </div>
     )

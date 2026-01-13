@@ -4,6 +4,7 @@ import SearchBar from "@/app/components/SearchBar"
 import {House} from "lucide-react"
 import {Bell} from "lucide-react"
 import {ShoppingCart} from "lucide-react"
+import ShoppingCartIcon from "./ShoppingCartIcon"
 
 const Navbar = () => {
     return (
@@ -29,9 +30,7 @@ const Navbar = () => {
             <Link href="">
             <Bell className="w-4 h-4 text-gray-600"/>
             </Link>
-            <Link href="">
-            <ShoppingCart className="w-4 h-4 text-gray-600"/>
-            </Link>
+            <ShoppingCartIcon/>
             <Link href="/login">
             Sign in
             </Link>

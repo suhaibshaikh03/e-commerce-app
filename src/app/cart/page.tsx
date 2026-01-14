@@ -1,8 +1,10 @@
 "use client"
 import { CartItemsType } from "@/types"
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation"
-
+import ShippingForm from "../components/ShippingForm";
+import PaymentForm from "../components/PaymentForm";
 const steps = [
     {
         id:1,
@@ -81,6 +83,7 @@ const cartItems:CartItemsType = [
 const CartPage = () => {
     const searchParams = useSearchParams()
     const router = useRouter()
+    const [shippingForm, setShippingForm] = useState(null);
 
     const activeStep = parseInt(searchParams.get("step") || "1")
 
@@ -103,7 +106,14 @@ const CartPage = () => {
         <div className="w-full flex flex-col lg:flex-row gap-16">
         {/* STEPS */}
         <div className="w-full lg:w-7/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8">
-
+            {activeStep === 1 ? (
+             "products"
+             ) : activeStep === 2 ? (
+             <ShippingForm/>
+             ) : (
+                activeStep === 3 && shippingForm ? <PaymentForm/> : 
+                <p className="text-sm text-gray-500">Please fill in the shipping form to continue</p>
+             )}
         </div>
         {/* DETAILS */}
         <div className="w-full lg:w-5/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8">

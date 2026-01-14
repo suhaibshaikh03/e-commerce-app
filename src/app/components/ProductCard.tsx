@@ -5,6 +5,7 @@ import Image from "next/image"
 import { ProductType } from "@/types";
 import { useState } from "react";
 import useCartStore from "@/stores/CartStore";
+import { toast } from "react-toastify";
 const ProductCard = ({product}:{product:ProductType}) => {
    const [productTypes, setProductTypes] = useState(
     {
@@ -30,8 +31,10 @@ const ProductCard = ({product}:{product:ProductType}) => {
         quantity:1,
         selectedSize: productTypes.size,
         selectedColor: productTypes.color,
-    })
-   }
+    });
+    toast.success("Product added to cart")
+   };
+
     return (
         <div className="shadow-lg rounded-lg overflow-hidden">
            {/* IMAGE */}

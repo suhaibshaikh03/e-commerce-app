@@ -1,7 +1,7 @@
 "use client"
 import { CartItemsType } from "@/types"
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Trash2 } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation"
 import ShippingForm from "../components/ShippingForm";
 import PaymentForm from "../components/PaymentForm";
@@ -107,7 +107,18 @@ const CartPage = () => {
         {/* STEPS */}
         <div className="w-full lg:w-7/12 shadow-lg border-1 border-gray-100 p-8 rounded-lg flex flex-col gap-8">
             {activeStep === 1 ? (
-             "products"
+             cartItems.map(item=>(
+                // SINGLE CART ITEM
+                <div className="flex items-center justify-between" key={item.id}>
+                {/* IMAGE AND DETAILS */}
+                <div className=""></div>
+                {/* DELETE BUTTON */}
+                <button className="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 transition-all duration-300 text-red-400 flex items-center justify-center cursor-pointer">
+                    <Trash2 className="w-3 h-3 "/>
+                </button>
+
+                </div>
+             ))
              ) : activeStep === 2 ? (
              <ShippingForm/>
              ) : (

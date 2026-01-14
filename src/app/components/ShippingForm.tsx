@@ -1,6 +1,6 @@
 const ShippingForm = () => {
     return (
-        <div className=""></div>
+        <div className="">Shipping Form</div>
     )
 }
 export default ShippingForm

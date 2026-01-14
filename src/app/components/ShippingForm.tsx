@@ -28,7 +28,7 @@ const ShippingForm = ({setShippingForm}:{setShippingForm:(data:ShippingFormInput
             <label htmlFor="email" className="text-xs text-gray-500 font-medium">Email</label>
             <input 
             className="border-b border-gray-200 py-2 outline-none text-sm"
-            type="text" id="email" placeholder="abc@gmail.com" {...register("email")}/>
+            type="email" id="email" placeholder="abc@gmail.com" {...register("email")}/>
             {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
           </div>
 

@@ -1,28 +1,39 @@
 import ProductInteraction from "@/app/components/ProductInteraction";
 import { ProductType } from "@/types"
 import Image from "next/image"
-//TEMPORARY DATA
-const product: ProductType = {
-    id: 1,
-    name: "Adidas CoreFit T-Shirt",
-    shortDescription:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    description:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 39.9,
-    sizes: ["s", "m", "l", "xl", "xxl"],
-    colors: ["gray", "purple", "green"],
-    images: {
-        gray: "/products/1g.png",
-        purple: "/products/1p.png",
-        green: "/products/1gr.png",
-    },
-}
+import { getProductById } from "@/app/utils/productData";
+
+export const generateMetadata = async ({params}:{params:{id:string}})=>{
+    const { id } = await params;
+    const product = getProductById(id);
+
+    if (!product) {
+        return {
+            title: "Product Not Found",
+            description: "The requested product could not be found."
+        };
+    }
+
+    return{
+        title: product.name,
+        description: product.description,
+    };
+};
 
 const ProductPage = async ({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ color: string; size: string }> }) => {
+    const { id } = await params;
     const { size, color } = await searchParams
+
+    const product = getProductById(id);
+
+    if (!product) {
+        return <div className="flex justify-center items-center h-64">Product not found</div>;
+    }
+
+    // Fix the bug: color should be used for selectedColor, not size
     const selectedSize = (size || product.sizes[0] as string)
-    const selectedColor = (size || product.colors[0] as string)
+    const selectedColor = (color || product.colors[0] as string)
+
     return (
         <div className="flex flex-col gap-4 lg:flex-row md:gap-12 mt-12">
             {/* IMAGE */}
@@ -46,7 +57,7 @@ const ProductPage = async ({ params, searchParams }: { params: Promise<{ id: str
                     By clicking Pay Now, you agree to our {" "}
                     <span className="underline hover:text-black">Terms & Conditions</span>{" "}
                     and <span className="underline hover:text-black">Privacy Policy</span>
-                    . You authorize us to charge your selected payment method for the 
+                    . You authorize us to charge your selected payment method for the
                     total amount shown. All sales are subject to our return and{" "}
                     <span className="underline hover:text-black">Refund Policies</span>
                 </p>

@@ -4,6 +4,7 @@ import { Minus, Plus, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import useCartStore from "@/stores/CartStore";
+import { toast } from "react-toastify";
 
 const ProductInteraction = ({ product, selectedSize, selectedColor }: { product: ProductType; selectedSize: string; selectedColor: string; }) => {
     const router = useRouter()
@@ -12,6 +13,22 @@ const ProductInteraction = ({ product, selectedSize, selectedColor }: { product:
     const [quantity, setQuantity] = useState(1)
 
     const {addToCart} = useCartStore()
+
+    const handleBuyNow = () => {
+        if(quantity <= 0) {
+            toast.error("Quantity must be greater than 0");
+            return;
+        }
+
+        addToCart({
+            ...product,
+            quantity,
+            selectedColor,
+            selectedSize,
+        });
+        toast.success("Product added to cart");
+        router.push('/cart?step=1');
+    };
 
     const handleTypeChange = (type: string, value: string) => {
         const params = new URLSearchParams(searchParams.toString())
@@ -28,8 +45,19 @@ const ProductInteraction = ({ product, selectedSize, selectedColor }: { product:
         }
     }
     const handleAddtoCart = ()=>{
+        if(quantity <= 0) {
+            toast.error("Quantity must be greater than 0");
+            return;
+        }
 
-    }
+        addToCart({
+            ...product,
+            quantity,
+            selectedColor,
+            selectedSize,
+        });
+        toast.success("Product added to cart")
+    };
     return (
         <div className="flex flex-col gap-4 mt-4">
             {/* SIZE */}
@@ -51,7 +79,7 @@ const ProductInteraction = ({ product, selectedSize, selectedColor }: { product:
             <span className="text-gray-500">Color</span>
                 <div className="flex items-center gap-2">
                         {product.colors.map((color)=> (
-                            <div className={`cursor-pointer border-1 p-[2px] ${selectedColor === color ? "border-gray-300" : "border-white"}`} key={color}
+                            <div className={`cursor-pointer border-1 p-[2px] ${selectedColor === color ? "border-gray-600" : "border-gray-300"}`} key={color}
                                 onClick={() => handleTypeChange("color", color)}
                             >
                                 <div className={`w-6 h-6 `}
@@ -85,7 +113,7 @@ const ProductInteraction = ({ product, selectedSize, selectedColor }: { product:
                 <Plus className="w-4 h-4"/>
                 Add to Cart
             </button>
-            <button className="ring-1 ring-gray-400 shadow-lg text-gray-800 px-4 py-2 rounded-md flex items-center justify-center cursor-pointer gap-2 text-sm font-medium">
+            <button onClick={handleBuyNow} className="ring-1 ring-gray-400 shadow-lg text-gray-800 px-4 py-2 rounded-md flex items-center justify-center cursor-pointer gap-2 text-sm font-medium">
                 <ShoppingCart className="w-4 h-4"/>
                 Buy this Item
             </button>

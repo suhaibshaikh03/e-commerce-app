@@ -4,6 +4,7 @@ import {useForm, SubmitHandler} from "react-hook-form"
 import { ArrowRight, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation"
 import Image from 'next/image';
+import useCartStore from "@/stores/CartStore";
 
 const PaymentForm = () => {
     const {register,handleSubmit,formState:{errors}} = useForm<PaymentFormInputs>({
@@ -11,9 +12,13 @@ const PaymentForm = () => {
     });
 
     const router = useRouter()
-    const handlePaymentForm : SubmitHandler<PaymentFormInputs> = (data)=>{
-        
+    const {clearCart} = useCartStore()
 
+    const handlePaymentForm : SubmitHandler<PaymentFormInputs> = (data)=>{
+        // In a real application, you would process the payment here
+        // For now, we'll just clear the cart and redirect to success page
+        clearCart();
+        router.push('/'); // Redirect to homepage after successful checkout
     }
     return (
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(handlePaymentForm)}>

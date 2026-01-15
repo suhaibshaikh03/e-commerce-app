@@ -15,7 +15,7 @@ const TermsPage = () => {
           
           <div className="prose prose-gray max-w-none">
             <p className="text-gray-600 mb-4">
-              Welcome to Suhaib's Mart. These terms and conditions outline the rules and regulations for the use of our website and services.
+              Welcome to Suhaib&apos;s Mart. These terms and conditions outline the rules and regulations for the use of our website and services.
             </p>
             
             <h2 className="text-xl font-semibold mt-6 mb-3">Acceptance of Terms</h2>
@@ -25,20 +25,20 @@ const TermsPage = () => {
             
             <h2 className="text-xl font-semibold mt-6 mb-3">Use License</h2>
             <p className="text-gray-600 mb-4">
-              Unless otherwise stated, Suhaib's Mart and/or its licensors own the intellectual property rights for all material on Suhaib's Mart. All intellectual property rights are reserved. You may access this from Suhaib's Mart for your own personal use subjected to restrictions set in these terms and conditions.
+              Unless otherwise stated, Suhaib&apos;s Mart and/or its licensors own the intellectual property rights for all material on Suhaib&apos;s Mart. All intellectual property rights are reserved. You may access this from Suhaib&apos;s Mart for your own personal use subjected to restrictions set in these terms and conditions.
             </p>
             
             <h2 className="text-xl font-semibold mt-6 mb-3">User Responsibilities</h2>
             <ul className="list-disc pl-6 text-gray-600 mb-4 space-y-2">
-              <li>You must not republish material from Suhaib's Mart</li>
-              <li>You must not sell, rent, or sub-license material from Suhaib's Mart</li>
-              <li>You must not reproduce, duplicate, or copy content from Suhaib's Mart</li>
+              <li>You must not republish material from Suhaib&apos;s Mart</li>
+              <li>You must not sell, rent, or sub-license material from Suhaib&apos;s Mart</li>
+              <li>You must not reproduce, duplicate, or copy content from Suhaib&apos;s Mart</li>
               <li>You must not engage in any data mining or similar extraction activities</li>
             </ul>
             
             <h2 className="text-xl font-semibold mt-6 mb-3">Disclaimer</h2>
             <p className="text-gray-600 mb-4">
-              The materials on Suhaib's Mart are provided on an 'as is' basis. Suhaib's Mart makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+              The materials on Suhaib&apos;s Mart are provided on an &apos;as is&apos; basis. Suhaib&apos;s Mart makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
             </p>
             
             <h2 className="text-xl font-semibold mt-6 mb-3">Governing Law</h2>

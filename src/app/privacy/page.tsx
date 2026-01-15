@@ -15,7 +15,7 @@ const PrivacyPage = () => {
           
           <div className="prose prose-gray max-w-none">
             <p className="text-gray-600 mb-4">
-              At Suhaib's Mart, accessible from suhaibsmart.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Suhaib's Mart and how we use it.
+              At Suhaib&apos;s Mart, accessible from suhaibsmart.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Suhaib&apos;s Mart and how we use it.
             </p>
             
             <h2 className="text-xl font-semibold mt-6 mb-3">Personal Data Collection</h2>
@@ -30,7 +30,7 @@ const PrivacyPage = () => {
             
             <h2 className="text-xl font-semibold mt-6 mb-3">How We Use Collected Information</h2>
             <p className="text-gray-600 mb-4">
-              Suhaib's Mart may collect and use your personal information for the following purposes:
+              Suhaib&apos;s Mart may collect and use your personal information for the following purposes:
             </p>
             <ul className="list-disc pl-6 text-gray-600 mb-4 space-y-2">
               <li><span className="font-medium">To improve customer service:</span> Information helps us respond to customer service requests and support needs more efficiently.</li>
@@ -47,7 +47,7 @@ const PrivacyPage = () => {
             
             <h2 className="text-xl font-semibold mt-6 mb-3">Sharing Personal Information</h2>
             <p className="text-gray-600 mb-4">
-              We do not sell, trade, or rent users' personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates, and advertisers.
+              We do not sell, trade, or rent users&apos; personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates, and advertisers.
             </p>
             
             <h2 className="text-xl font-semibold mt-6 mb-3">Changes to This Privacy Policy</h2>

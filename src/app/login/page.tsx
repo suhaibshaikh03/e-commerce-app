@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
@@ -40,14 +41,14 @@ const LoginPage = () => {
         {/* Logo and Title */}
         <div className="text-center">
           <div className="mx-auto">
-            <img
+            <Image
               src="/logo.png"
-              alt="SUHAIB'S ECOMMERCE"
+              alt="SUHAIB&apos;S ECOMMERCE"
               width={48}
               height={48}
               className="w-12 h-12 mx-auto"
             />
-            <p className="mt-2 text-lg font-medium tracking-wider text-yellow-400">SUHAIB'S MART</p>
+            <p className="mt-2 text-lg font-medium tracking-wider text-yellow-400">SUHAIB&apos;S MART</p>
           </div>
           <h2 className="mt-4 text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
           <p className="mt-2 text-sm text-gray-600">

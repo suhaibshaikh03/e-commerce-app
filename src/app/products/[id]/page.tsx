@@ -3,7 +3,7 @@ import { ProductType } from "@/types"
 import Image from "next/image"
 import { getProductById } from "@/app/utils/productData";
 
-export const generateMetadata = async ({params}:{params:{id:string}})=>{
+export const generateMetadata = async ({params}:{params:Promise<{id:string}>})=>{
     const { id } = await params;
     const product = getProductById(id);
 

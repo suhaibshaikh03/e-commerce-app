@@ -23,7 +23,6 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real application, you would handle login logic here
-    console.log('Login attempt with:', formData);
     alert(`Welcome back! Login attempted with email: ${formData.email}`);
   };
 

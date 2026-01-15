@@ -25,7 +25,6 @@ const SignupPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real application, you would handle signup logic here
-    console.log('Signup attempt with:', formData);
     alert(`Account created successfully for ${formData.name} with email: ${formData.email}`);
   };
 

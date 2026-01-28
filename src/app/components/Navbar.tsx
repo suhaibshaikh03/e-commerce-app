@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from  "next/link"
 import SearchBar from "@/app/components/SearchBar"
 import {House} from "lucide-react"
@@ -11,7 +12,14 @@ const Navbar = () => {
         
             {/* LEFT */}
             <Link href="/" className="flex items-center">
-            <p className="text-md font-medium tracking-wider text-yellow-400">SUHAIB&apos;S MART</p>
+            <Image
+            src="/logo.png"
+            alt="SUHAIB&apos;S ECOMMERCE"
+            width={36}
+            height={36}
+            className="w-6 h-6 md:w-9 md:h-9"
+            />
+            <p className="hidden md:block text-md font-medium tracking-wider text-yellow-400">SUHAIB&apos;S MART</p>
             </Link>
             {/* RIGHT */}
             <div className="flex items-center gap-6">

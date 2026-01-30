@@ -4,11 +4,14 @@ frontend:
     preBuild:
       commands:
         - npm install -g pnpm
-        # Use --reporter=append-only to prevent the log from hanging
-        - pnpm install --reporter=append-only
+        # 1. Configure pnpm for a non-interactive CI environment
+        - pnpm config set store-dir .pnpm-store
+        # 2. Add --frozen-lockfile=false if your lockfile is out of sync
+        - pnpm install --reporter=append-only --frozen-lockfile=false
     build:
       commands:
-        # Inject secrets (as noted in your log warnings)
+        # 3. Increase memory for the build process (common for Next.js)
+        - export NODE_OPTIONS="--max-old-space-size=4096"
         - env | grep -E 'NEXT_PUBLIC_|STRIPE_|DATABASE_' >> .env.production
         - pnpm run build
   artifacts:
@@ -17,5 +20,6 @@ frontend:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/*
+      - .pnpm-store/**/*
       - .next/cache/**/*
+      - node_modules/**/*

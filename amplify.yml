@@ -3,13 +3,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Install pnpm globally before running install
         - npm install -g pnpm
-        - pnpm install
+        # Use --reporter=append-only to prevent the log from hanging
+        - pnpm install --reporter=append-only
     build:
       commands:
-        # If you have environment variables in Amplify, this line pulls them into the build
-        # Replace 'NEXT_PUBLIC_' with your actual prefix if different
+        # Inject secrets (as noted in your log warnings)
         - env | grep -E 'NEXT_PUBLIC_|STRIPE_|DATABASE_' >> .env.production
         - pnpm run build
   artifacts:
@@ -18,5 +17,5 @@ frontend:
       - '**/*'
   cache:
     paths:
-      - .next/cache/**/*
       - node_modules/**/*
+      - .next/cache/**/*

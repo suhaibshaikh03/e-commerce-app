@@ -1,0 +1,22 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Install pnpm globally before running install
+        - npm install -g pnpm
+        - pnpm install
+    build:
+      commands:
+        # If you have environment variables in Amplify, this line pulls them into the build
+        # Replace 'NEXT_PUBLIC_' with your actual prefix if different
+        - env | grep -E 'NEXT_PUBLIC_|STRIPE_|DATABASE_' >> .env.production
+        - pnpm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .next/cache/**/*
+      - node_modules/**/*

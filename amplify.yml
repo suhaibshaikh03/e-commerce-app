@@ -5,13 +5,21 @@ frontend:
       commands:
         - curl -fsSL https://get.pnpm.io/install.sh | sh -
         - pnpm config set store-dir .pnpm-store
-        - timeout 600 pnpm install --frozen-lockfile=false --prefer-offline --reporter=silent || true
+        - echo "Installing dependencies..."
+        - timeout 600 pnpm install --frozen-lockfile=false --prefer-offline --reporter=append-only || echo "Install completed with potential issues"
     build:
       commands:
         - export NODE_OPTIONS="--max-old-space-size=6144"
         # Load environment variables for SSR
         - env | grep -e NEXT_PUBLIC_ >> .env.production
+        # Debug: Show environment variables
+        - echo "Environment variables loaded:"
+        - cat .env.production || echo "No .env.production file created"
+        # Clean build to avoid cache issues
+        - rm -rf .next || true
+        - echo "Starting build process..."
         - timeout 1200 pnpm run build
+        - echo "Build completed."
   artifacts:
     baseDirectory: .next
     files:

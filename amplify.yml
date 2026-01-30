@@ -10,18 +10,12 @@ frontend:
     build:
       commands:
         - export NODE_OPTIONS="--max-old-space-size=6144"
-        # Load environment variables for SSR
-        - env | grep -e NEXT_PUBLIC_ >> .env.production
-        # Debug: Show environment variables
-        - echo "Environment variables loaded:"
-        - cat .env.production || echo "No .env.production file created"
-        # Clean build to avoid cache issues
-        - rm -rf .next || true
+        # For static export, we don't need SSR environment variables
         - echo "Starting build process..."
         - timeout 1200 pnpm run build
         - echo "Build completed."
   artifacts:
-    baseDirectory: .next
+    baseDirectory: out
     files:
       - '**/*'
   cache:

@@ -9,8 +9,7 @@ frontend:
     build:
       commands:
         - export NODE_OPTIONS="--max-old-space-size=6144"
-        # Load environment variables for SSR
-        - env | grep -e NEXT_PUBLIC_ >> .env.production
+        - echo "Installing dependencies and building Next.js app..."
         - timeout 1200 pnpm run build
   artifacts:
     baseDirectory: .next

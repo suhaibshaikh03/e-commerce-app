@@ -4,12 +4,15 @@ frontend:
     preBuild:
       commands:
         - npm install -g pnpm
+        # 1. Configure pnpm for a non-interactive CI environment
         - pnpm config set store-dir .pnpm-store
-        - pnpm install --frozen-lockfile=false
+        # 2. Add --frozen-lockfile=false if your lockfile is out of sync
+        - pnpm install --reporter=append-only --frozen-lockfile=false
     build:
       commands:
-        - export NODE_OPTIONS="--max-old-space-size=6144"
-        - echo "Installing dependencies and building Next.js app..."
+        # 3. Increase memory for the build process (common for Next.js)
+        - export NODE_OPTIONS="--max-old-space-size=4096"
+        - env | grep -E 'NEXT_PUBLIC_|STRIPE_|DATABASE_' >> .env.production
         - pnpm run build
   artifacts:
     baseDirectory: .next
@@ -18,4 +21,5 @@ frontend:
   cache:
     paths:
       - .pnpm-store/**/*
+      - .next/cache/**/*
       - node_modules/**/*

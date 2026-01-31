@@ -1,7 +1,7 @@
 import ProductInteraction from "@/app/components/ProductInteraction";
 import { ProductType } from "@/types"
 import Image from "next/image"
-import { getProductById, products } from "@/app/utils/productData";
+import { getProductById } from "@/app/utils/productData";
 
 export const generateMetadata = async ({params}:{params:Promise<{id:string}>})=>{
     const { id } = await params;
@@ -19,13 +19,6 @@ export const generateMetadata = async ({params}:{params:Promise<{id:string}>})=>
         description: product.description,
     };
 };
-
-// Generate static params for all known products
-export async function generateStaticParams() {
-  return products.map((product) => ({
-    id: String(product.id),
-  }));
-}
 
 const ProductPage = async ({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ color: string; size: string }> }) => {
     const { id } = await params;

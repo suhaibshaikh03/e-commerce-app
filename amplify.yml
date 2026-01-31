@@ -3,20 +3,19 @@ frontend:
   phases:
     preBuild:
       commands:
-        - curl -fsSL https://get.pnpm.io/install.sh | sh -
+        - npm install -g pnpm
         - pnpm config set store-dir .pnpm-store
-        - timeout 600 pnpm install --frozen-lockfile=false --prefer-offline --reporter=silent || true
+        - pnpm install --frozen-lockfile=false
     build:
       commands:
         - export NODE_OPTIONS="--max-old-space-size=6144"
         - echo "Installing dependencies and building Next.js app..."
-        - timeout 1200 pnpm run build
+        - pnpm run build
   artifacts:
     baseDirectory: .next
     files:
       - '**/*'
   cache:
     paths:
-      - .pnpm-store/**
-      - node_modules/**
-      - pnpm-lock.yaml
+      - .pnpm-store/**/*
+      - node_modules/**/*

@@ -2,14 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    serverActions: false, // Disable for static export
+    serverActions: true,
+    serverComponentsExternalPackages: ["sharp", "onnxruntime-node"], // Common packages for image processing
   },
   images: {
     unoptimized: true, // Since all images are local, we can disable optimization
   },
-  // Use static export for simpler deployment
-  output: 'export',
-  trailingSlash: true,
+  // Enable static exports for simpler deployment
+  output: undefined, // Let Amplify determine the output type
 };
 
 export default nextConfig;

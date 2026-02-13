@@ -3,10 +3,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import useAuthStore from "@/stores/AuthStore";
 
 const SignupPage = () => {
+  const router = useRouter();
+  const { login } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,10 +28,41 @@ const SignupPage = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would handle signup logic here
-    alert(`Account created successfully for ${formData.name} with email: ${formData.email}`);
+    setError("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message || "Registration failed");
+        return;
+      }
+
+      // Store token and redirect in the auth store
+      login(
+        { _id: data._id, name: data.name, firstName: data.firstName, email: data.email },
+        data.token
+      );
+
+      router.push("/");
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const passwordsMatch = formData.password === formData.confirmPassword;
@@ -65,6 +102,11 @@ const SignupPage = () => {
         {/* Signup Form */}
         <div className="mt-8 bg-white py-8 px-6 shadow rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-600 text-sm rounded-md p-3">
+                {error}
+              </div>
+            )}
             {/* Name Field */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -162,11 +204,10 @@ const SignupPage = () => {
                   required
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className={`appearance-none block w-full pl-10 pr-10 py-3 border ${
-                    passwordsMatch || formData.confirmPassword === '' 
-                      ? 'border-gray-300' 
-                      : 'border-red-300'
-                  } rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm`}
+                  className={`appearance-none block w-full pl-10 pr-10 py-3 border ${passwordsMatch || formData.confirmPassword === ''
+                    ? 'border-gray-300'
+                    : 'border-red-300'
+                    } rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm`}
                   placeholder="••••••••"
                 />
                 <button
@@ -208,14 +249,13 @@ const SignupPage = () => {
             <div>
               <button
                 type="submit"
-                disabled={!passwordsMatch}
-                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
-                  passwordsMatch 
-                    ? 'bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500' 
-                    : 'bg-gray-400 cursor-not-allowed'
-                } transition-colors duration-300`}
+                disabled={!passwordsMatch || loading}
+                className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${passwordsMatch && !loading
+                  ? 'bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500'
+                  : 'bg-gray-400 cursor-not-allowed'
+                  } transition-colors duration-300`}
               >
-                Create Account
+                {loading ? "Creating Account..." : "Create Account"}
               </button>
             </div>
           </form>
